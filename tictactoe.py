@@ -45,7 +45,7 @@ if __name__ == '__main__':
         # Ask the user for parameters.
         grid_size = int(validate_input("Size of the grid: ", lambda x: x.isnumeric()))
         amount_of_players = int(validate_input("Amount of players: ", lambda x: x.isnumeric()))
-        player_symbols = validate_input("Enter the symbols for the players, separated by space.\n", lambda x: len(x.split()) >= amount_of_players).split()[:amount_of_players]
+        player_symbols = validate_input("Enter the symbols for the players, separated by space.\n", lambda x: len(set(x.split())) >= amount_of_players).split()[:amount_of_players]
         player_symbols = [x[:1] for x in player_symbols]  # Only use the first character of each symbol.
 
         # Create the Board class
