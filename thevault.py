@@ -13,7 +13,7 @@ def new_vault() -> Vault:
 
     print("No existing vault detected.")
     print("To create a new password, create a password below.")
-    vault_key = validate_input("Password for new vault: ", lambda x: len(x) >= 8 and x.isprintable(), err_text="It needs to be at least 8 characters (no weird characters).\n")
+    vault_key = validate_input("Password for new vault: ", lambda x: 8 <= len(x) <= 32 and x.isprintable(), err_text="It needs to be at least 8 characters, max 32. (no weird characters).\n")
 
     # Make a new vault object.
     vault = Vault(vault_key.encode("utf-8"))
@@ -33,7 +33,7 @@ def existing_vault() -> Vault:
 
     print("Found an existing vault.")
     print("Please input the password for that vault.")
-    vault_key = validate_input(": ", lambda x: len(x) >= 8 and x.isprintable(), err_text="Has to be at least 8 characters long. No weird characters.\n")
+    vault_key = validate_input(": ", lambda x: 8 <= len(x) <= 32 and x.isprintable(), err_text="Has to be at least 8 characters long, max 32. No weird characters.\n")
 
     # Key is provided for existing vault. Try to open it.
     vault = Vault(vault_key.encode("utf-8"))
@@ -148,7 +148,7 @@ def main():
         elif option == 5:
             services = vault.get_services()
 
-            print("Your services {}:\n".format(len(services)))
+            print("Your services ({}):\n".format(len(services)))
             for service in services:
                 print(service)
 

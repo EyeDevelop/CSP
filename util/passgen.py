@@ -5,11 +5,11 @@ import string
 
 from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad
-from Crypto.Random.random import getrandbits
+from Crypto.Random import get_random_bytes
 
 # Garble memory so this isn't in a static place.
-a = [0] * random.gauss(10, 5)
-ANTI_MEMORY_KEY = getrandbits(32)
+a = [0] * int(random.gauss(10, 5))
+ANTI_MEMORY_KEY = get_random_bytes(32)
 del a
 
 
