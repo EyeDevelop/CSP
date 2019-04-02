@@ -95,8 +95,8 @@ def main():
 
         # Store a password.
         elif option == 1:
-            service = validate_input("Please enter the service name: ", lambda x: x.isprintable())
-            password = validate_input("Please enter the password: ", lambda x: len(x) > 0)
+            service = validate_input("Please enter the service name: ", lambda x: x.isprintable() and len(x) > 0)
+            password = validate_input("Please enter the password: ", lambda x: x.isprintable() and len(x) > 0)
 
             vault.store_password(service, password)
 
@@ -104,7 +104,7 @@ def main():
 
         # Generate a password.
         elif option == 2:
-            service = validate_input("Please enter the service name: ", lambda x: x.isprintable())
+            service = validate_input("Please enter the service name: ", lambda x: x.isprintable() and len(x) > 0)
             length = int(validate_input("Enter the length of the password: ", lambda x: x.isnumeric()))
 
             print("\n\nIt's time to choose complexity.")
@@ -129,7 +129,7 @@ def main():
 
         # Retrieve password for service.
         elif option == 3:
-            service = validate_input("Please enter the service name: ", lambda x: x.isprintable())
+            service = validate_input("Please enter the service name: ", lambda x: x.isprintable() and len(x) > 0)
 
             if service in vault.get_services():
                 print("Your password for {}: {}".format(service, vault.get_password(service)))
@@ -138,7 +138,7 @@ def main():
 
         # Delete service.
         elif option == 4:
-            service = validate_input("Please enter the service name: ", lambda x: x.isprintable())
+            service = validate_input("Please enter the service name: ", lambda x: x.isprintable() and len(x) > 0)
 
             vault.delete_service(service)
 
