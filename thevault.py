@@ -12,7 +12,7 @@ def new_vault() -> Vault:
     """
 
     print("No existing vault detected.")
-    print("To create a new password, create a password below.")
+    print("To create a new vault, create a password below.")
     vault_key = validate_input("Password for new vault: ", lambda x: 8 <= len(x) <= 32 and x.isprintable(), err_text="It needs to be at least 8 characters, max 32. (no weird characters).\n")
 
     # Make a new vault object.
